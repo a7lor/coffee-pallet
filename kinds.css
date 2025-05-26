@@ -1,0 +1,153 @@
+/* リセット */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #fff;
+    color: #333;
+    height: 100%;
+  }
+  
+  /* メニューバー */
+  .menu-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .menu-item {
+    position: relative;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .menu-item > a,
+  .menu-item > span {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .menu-item > a:hover,
+  .menu-item > span:hover,
+  .menu-item > a:focus,
+  .menu-item > span:focus {
+    background-color: #555;
+  }
+  
+  .menu-item > a.active,
+  .menu-item > span.active {
+    background-color: #d2691e;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* ドロップダウンメニュー */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    min-width: 200px;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+  }
+  
+  .dropdown-content a:hover,
+  .dropdown-content a:focus {
+    background-color: #555;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* メイン全体ラップ */
+  .main-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* コーヒーボックス（説明＋画像） */
+  .coffee-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 60px 0;
+    padding: 40px;
+    background-color: #f8f5f0; /* 背景色付きボックス */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  /* 交互に右左切り替え */
+  .row-reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .text-area {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .text-area h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .text-area p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin: 6px 0;
+  }
+  
+  .image-area {
+    width: 50%;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .image-area img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .coffee-box {
+      flex-direction: column !important;
+      text-align: center;
+    }
+  
+    .text-area,
+    .image-area {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+  

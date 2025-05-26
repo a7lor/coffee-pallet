@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Coffe Palette</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    @font-face {
+  font-family: 'ArmedLemon';
+  src: url('fonts/ArmedLemon.TTF') format('truetype');
+}
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    /* メニューバー全体 */
+    .menu-bar {
+      display: flex;
+      justify-content: space-around; /* 均等配置 */
+      align-items: center;
+      background-color: #333;
+      color: white;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu-item {
+      position: relative;
+    }
+
+    .menu-item > a,
+    .menu-item > span {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .menu-item > a:hover,
+    .menu-item > span:hover {
+      background-color: #555;
+    }
+
+    /* ドロップダウン */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #444;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1001;
+      min-width: 200px;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 10px 20px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #555;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<!-- メニューバー -->
+<header class="menu-bar">
+  <div class="menu-item"><a href="index.html">home</a></div>
+  <div class="menu-item dropdown">
+    <span>コーヒー図鑑</span>
+    <div class="dropdown-content">
+      <a href="which.html">ドリップコーヒー・エスプレッソの違い</a>
+      <a href="coffee-types.html">コーヒーの種類</a>
+    </div>
+  </div>
+  <div class="menu-item"><a href="sindan.html">コーヒー診断</a></div>
+  <div class="menu-item"><a href="coffee-about.html">about</a></div>
+</header>
+
+  <main style="padding: 50px; text-align: center; max-width: 800px; margin: 0 auto;">
+    <h1 class="armed-title"><p>きっと、</p><p>あなたにピッタリの味がある</p>
+    </p></h1>
+    <p>このサイトでは、コーヒーの種類についてやさしく・楽しく学べます<br>
+      図鑑や診断コンテンツを通して、あなたの「好き」にピッタリの一杯が見つかるかも
+    </p>
+    </p>
+  </main>
+
+</body>
+</html>

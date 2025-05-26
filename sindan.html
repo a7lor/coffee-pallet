@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Coffee Palette 診断</title>
+  <style>
+    @font-face {
+      font-family: 'ArmedLemon';
+      src: url('fonts/ArmedLemon.TTF') format('truetype');
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #f8f6f2;
+    }
+
+    .menu-bar {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      align-items: center;
+      background-color: #333;
+      color: white;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu-item {
+      position: relative;
+    }
+
+    .menu-item > a,
+    .menu-item > span {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .menu-item > a:hover,
+    .menu-item > span:hover {
+      background-color: #555;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #444;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1001;
+      min-width: 200px;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 10px 20px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #555;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: #8B4513;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #5c3317;
+    }
+
+    .result {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="menu-bar">
+    <div class="menu-item">
+        <a href="index.html">home</a>
+      </div>
+    <div class="menu-item dropdown">
+      <span>コーヒー図鑑</span>
+      <div class="dropdown-content">
+        <a href="which.html">ドリップコーヒー・エスプレッソの違い</a>
+        <a href="coffee-types.html">コーヒーの種類</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="sindan.html">コーヒー診断</a>
+    </div>
+    <div class="menu-item">
+      <a href="coffee-about.html">about</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1 id="question">コーヒー診断を始めよう！</h1>
+    <div id="buttons">
+      <button class="btn" onclick="nextQuestion(0)">スタート！</button>
+    </div>
+    <div id="backButton" style="display: none;">
+      <button class="btn" onclick="goBack()">← 一つ前に戻る</button>
+    </div>
+    <div id="result" style="display: none;" class="result"></div>
+  </div>
+
+  <script>
+    const results = [
+      "あなたは…「カフェオレ」タイプ！やさしくて親しみやすい雰囲気が魅力的！",
+      "あなたは…「アメリカンコーヒー」タイプ！あっさりした風味と、落ち着いた印象が素敵！",
+      "あなたは…「ウィンナーコーヒー」タイプ！ふんわり甘くてちょっと個性派！",
+      "あなたは…「フレーバーコーヒー」タイプ！オシャレで香り高いあなたは注目の的！",
+      "あなたは…「カフェモカ」タイプ！チョコのように甘くて癒し系！",
+      "あなたは…「カフェラテ」タイプ！優しさとバランス感覚にあふれてる！",
+      "あなたは…「カプチーノ」タイプ！ふわふわしてるけど芯のある人！",
+      "あなたは…「エスプレッソ」タイプ！濃厚でストイック、こだわり派！",
+      "あなたは…「アメリカーノ」タイプ！シンプルで無駄のないスマートさ！",
+      "あなたは…「フラットホワイト」タイプ！ミルクとの調和が絶妙な安定感！",
+      "あなたは…「カフェ・プラベ」タイプ！クリエイティブでオリジナルが好き！",
+      "あなたは…「エスプレッソ・マキアート」タイプ！一見クールだけど熱い芯を持ってる！",
+      "あなたは…「エスプレッソ・コンパナ」タイプ！甘さと強さのギャップが魅力的！"
+    ];
+
+    const questions = [
+      { text: "朝はゆっくり？それともバタバタ？", options: ["ゆっくり", "バタバタ"], next: [1, 2] },
+      { text: "甘いのが好き？", options: ["はい", "いいえ"], next: [3, 4] },
+      { text: "ミルクは必要？", options: ["いる", "いらない"], next: [5, 6] },
+      { text: "チョコ系はどう？", options: ["大好き", "あんまり"], next: [7, 8] },
+      { text: "香りの強さを重視する？", options: ["うん", "そうでもない"], next: [9, 10] },
+      { text: "泡立ってるの好き？", options: ["ふわふわ最高", "どっしりがいい"], next: [11, 12] },
+      { result: 8 },
+      { result: 4 },
+      { result: 5 },
+      { result: 3 },
+      { result: 1 },
+      { result: 6 },
+      { result: 7 },
+      { result: 2 },
+      { result: 0 },
+      { result: 9 },
+      { result: 10 },
+      { result: 11 },
+      { result: 12 }
+    ];
+
+    let currentIndex = 0;
+    let historyStack = [];
+
+    function nextQuestion(choice) {
+      const current = questions[currentIndex];
+
+      if (current.result !== undefined) {
+        showResult(current.result);
+        return;
+      }
+
+      historyStack.push(currentIndex); // 現在の質問を履歴に追加
+      currentIndex = current.next[choice];
+      const next = questions[currentIndex];
+
+      if (next.result !== undefined) {
+        showResult(next.result);
+        return;
+      }
+
+      updateQuestion(next.text, next.options);
+    }
+
+    function goBack() {
+      if (historyStack.length === 0) return;
+      currentIndex = historyStack.pop();
+      const current = questions[currentIndex];
+      updateQuestion(current.text, current.options);
+    }
+
+    function updateQuestion(text, options) {
+      document.getElementById("question").innerText = text;
+      document.getElementById("buttons").innerHTML = `
+        <button class="btn" onclick="nextQuestion(0)">${options[0]}</button>
+        <button class="btn" onclick="nextQuestion(1)">${options[1]}</button>
+      `;
+      document.getElementById("backButton").style.display = historyStack.length > 0 ? "block" : "none";
+    }
+
+    function showResult(resultIndex) {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("buttons").style.display = "none";
+      document.getElementById("backButton").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("result").innerText = results[resultIndex];
+    }
+  </script>
+
+</body>
+</html>

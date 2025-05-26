@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  background: linear-gradient(to right, #fdf6e3, #f5e6ca);
+  color: #333;
+}
+
+/* メニューバー */
+.menu-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #2c2c2c;
+  color: white;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-item > a,
+.menu-item > span {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-item > a:hover,
+.menu-item > span:hover {
+  background-color: #4a4a4a;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1001;
+  min-width: 200px;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+  background-color: #5c5c5c;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* メインエリア */
+main {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #ffffffcc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #3e2f23;
+  border-bottom: 3px solid #d2691e;
+  padding-bottom: 0.3em;
+  margin-bottom: 0.6em;
+  text-align: center;
+}
+
+h2 {
+  color: #b35600;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin-bottom: 1em;
+  font-size: 1.1em;
+}
+
+a {
+  color: #d2691e;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #a34d00;
+  text-decoration: none;
+}
+
+/* プロフィールセクション */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-header img {
+  width: 100px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.profile-name {
+  color: #d2691e;
+  font-weight: bold;
+  font-size: 1.2em;
+}

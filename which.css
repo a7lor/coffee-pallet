@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'ArmedLemon';
+    src: url('which.html') format('truetype');
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f8f5f0;
+    color: #333;
+  }
+  
+  .armed-title {
+    font-family: 'ArmedLemon', sans-serif;
+  }
+  
+  /* メニューバー */
+  .menu-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .menu-item {
+    position: relative;
+  }
+  
+  .menu-item > a,
+  .menu-item > span {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .menu-item > a:hover,
+  .menu-item > span:hover,
+  .menu-item > a:focus,
+  .menu-item > span:focus {
+    background-color: #555;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    min-width: 200px;
+    z-index: 1001;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+  }
+  
+  .dropdown-content a:hover,
+  .dropdown-content a:focus {
+    background-color: #555;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* メインコンテンツ中央配置 */
+  .content {
+    padding: 50px 20px;
+    max-width: 800px;
+    margin: 40px auto 0; /* ← ここで上にスペースを空ける */
+    text-align: center;
+    background-color: #ffffffcc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  /* セクション */
+  .diff-section {
+    margin-top: 2em;
+    text-align: left;
+  }
+  
+  .diff-section h2 {
+    color: #b35600;
+    border-bottom: 2px solid #d2691e;
+    padding-bottom: 0.3em;
+  }
+  
+  .diff-section p {
+    font-size: 1.1em;
+    margin: 1em 0;
+  }
+  
+  .diff-section ul {
+    padding-left: 1.2em;
+  }
+  
+  .diff-section li {
+    margin-bottom: 0.5em;
+  }
+  
