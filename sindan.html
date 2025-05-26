@@ -4,18 +4,12 @@
   <meta charset="UTF-8">
   <title>Coffee Palette 診断</title>
   <style>
-    @font-face {
-      font-family: 'ArmedLemon';
-      src: url('fonts/ArmedLemon.TTF') format('truetype');
-    }
-
     body, html {
       margin: 0;
       padding: 0;
       font-family: sans-serif;
       background-color: #f8f6f2;
     }
-
     .menu-bar {
       display: flex;
       justify-content: center;
@@ -28,11 +22,9 @@
       top: 0;
       z-index: 1000;
     }
-
     .menu-item {
       position: relative;
     }
-
     .menu-item > a,
     .menu-item > span {
       color: white;
@@ -41,12 +33,10 @@
       display: inline-block;
       cursor: pointer;
     }
-
     .menu-item > a:hover,
     .menu-item > span:hover {
       background-color: #555;
     }
-
     .dropdown-content {
       display: none;
       position: absolute;
@@ -57,22 +47,18 @@
       z-index: 1001;
       min-width: 200px;
     }
-
     .dropdown-content a {
       color: white;
       padding: 10px 20px;
       display: block;
       text-decoration: none;
     }
-
     .dropdown-content a:hover {
       background-color: #555;
     }
-
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
     .container {
       max-width: 600px;
       margin: 80px auto;
@@ -82,12 +68,10 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
       text-align: center;
     }
-
     h1 {
       font-size: 1.8rem;
       margin-bottom: 20px;
     }
-
     .btn {
       background: #8B4513;
       color: white;
@@ -99,11 +83,9 @@
       margin: 10px;
       transition: background 0.3s;
     }
-
     .btn:hover {
       background: #5c3317;
     }
-
     .result {
       font-size: 1.2rem;
       line-height: 1.6;
@@ -112,11 +94,10 @@
   </style>
 </head>
 <body>
-
   <header class="menu-bar">
     <div class="menu-item">
-        <a href="index.html">home</a>
-      </div>
+      <a href="index.html">home</a>
+    </div>
     <div class="menu-item dropdown">
       <span>コーヒー図鑑</span>
       <div class="dropdown-content">
@@ -131,7 +112,6 @@
       <a href="coffee-about.html">about</a>
     </div>
   </header>
-
   <div class="container">
     <h1 id="question">コーヒー診断を始めよう！</h1>
     <div id="buttons">
@@ -150,85 +130,79 @@
       "あなたは…「ウィンナーコーヒー」タイプ！ふんわり甘くてちょっと個性派！",
       "あなたは…「フレーバーコーヒー」タイプ！オシャレで香り高いあなたは注目の的！",
       "あなたは…「カフェモカ」タイプ！チョコのように甘くて癒し系！",
-      "あなたは…「カフェラテ」タイプ！優しさとバランス感覚にあふれてる！",
-      "あなたは…「カプチーノ」タイプ！ふわふわしてるけど芯のある人！",
-      "あなたは…「エスプレッソ」タイプ！濃厚でストイック、こだわり派！",
-      "あなたは…「アメリカーノ」タイプ！シンプルで無駄のないスマートさ！",
-      "あなたは…「フラットホワイト」タイプ！ミルクとの調和が絶妙な安定感！",
-      "あなたは…「カフェ・プラベ」タイプ！クリエイティブでオリジナルが好き！",
-      "あなたは…「エスプレッソ・マキアート」タイプ！一見クールだけど熱い芯を持ってる！",
-      "あなたは…「エスプレッソ・コンパナ」タイプ！甘さと強さのギャップが魅力的！"
+      "あなたは…「エスプレッソ」タイプ！濃厚でストイック、こだわり派！"
     ];
 
     const questions = [
-      { text: "朝はゆっくり？それともバタバタ？", options: ["ゆっくり", "バタバタ"], next: [1, 2] },
-      { text: "甘いのが好き？", options: ["はい", "いいえ"], next: [3, 4] },
-      { text: "ミルクは必要？", options: ["いる", "いらない"], next: [5, 6] },
-      { text: "チョコ系はどう？", options: ["大好き", "あんまり"], next: [7, 8] },
-      { text: "香りの強さを重視する？", options: ["うん", "そうでもない"], next: [9, 10] },
-      { text: "泡立ってるの好き？", options: ["ふわふわ最高", "どっしりがいい"], next: [11, 12] },
-      { result: 8 },
-      { result: 4 },
-      { result: 5 },
-      { result: 3 },
-      { result: 1 },
-      { result: 6 },
-      { result: 7 },
-      { result: 2 },
-      { result: 0 },
-      { result: 9 },
-      { result: 10 },
-      { result: 11 },
-      { result: 12 }
+      { text: "朝はどんな気分？", options: ["さっぱり", "甘め", "濃い", "ふんわり"], types: [1, 4, 5, 2] },
+      { text: "休日の過ごし方は？", options: ["ゆったり読書", "カフェ巡り", "運動", "映画鑑賞"], types: [0, 3, 5, 2] },
+      { text: "甘いものは好き？", options: ["大好き", "まあまあ", "少しだけ", "苦手"], types: [4, 2, 0, 5] },
+      { text: "香り重視？味重視？", options: ["香り", "味", "両方", "どちらでも"], types: [3, 5, 0, 1] },
+      { text: "自分を一言で言うと？", options: ["やさしい", "元気", "繊細", "情熱的"], types: [0, 1, 2, 5] },
+      { text: "コーヒーを飲むタイミングは？", options: ["朝", "昼", "夜", "いつでも"], types: [1, 3, 4, 5] }
     ];
 
     let currentIndex = 0;
     let historyStack = [];
+    let score = [0, 0, 0, 0, 0, 0];
 
     function nextQuestion(choice) {
       const current = questions[currentIndex];
+      const type = current.types[choice];
+      score[type]++;
 
-      if (current.result !== undefined) {
-        showResult(current.result);
-        return;
+      historyStack.push({ index: currentIndex, choice });
+      currentIndex++;
+
+      if (currentIndex >= questions.length) {
+        showResult();
+      } else {
+        const next = questions[currentIndex];
+        updateQuestion(next.text, next.options);
       }
-
-      historyStack.push(currentIndex); // 現在の質問を履歴に追加
-      currentIndex = current.next[choice];
-      const next = questions[currentIndex];
-
-      if (next.result !== undefined) {
-        showResult(next.result);
-        return;
-      }
-
-      updateQuestion(next.text, next.options);
     }
 
     function goBack() {
       if (historyStack.length === 0) return;
-      currentIndex = historyStack.pop();
+      const last = historyStack.pop();
+      const type = questions[last.index].types[last.choice];
+      score[type]--;
+      currentIndex = last.index;
       const current = questions[currentIndex];
       updateQuestion(current.text, current.options);
     }
 
     function updateQuestion(text, options) {
       document.getElementById("question").innerText = text;
-      document.getElementById("buttons").innerHTML = `
-        <button class="btn" onclick="nextQuestion(0)">${options[0]}</button>
-        <button class="btn" onclick="nextQuestion(1)">${options[1]}</button>
-      `;
+      document.getElementById("buttons").innerHTML = options.map((opt, idx) =>
+        `<button class="btn" onclick="nextQuestion(${idx})">${opt}</button>`
+      ).join("");
       document.getElementById("backButton").style.display = historyStack.length > 0 ? "block" : "none";
     }
 
-    function showResult(resultIndex) {
+    function showResult() {
       document.getElementById("question").style.display = "none";
       document.getElementById("buttons").style.display = "none";
       document.getElementById("backButton").style.display = "none";
       document.getElementById("result").style.display = "block";
-      document.getElementById("result").innerText = results[resultIndex];
+
+      const maxScore = Math.max(...score);
+      const resultIndex = score.indexOf(maxScore);
+      document.getElementById("result").innerHTML = `
+        ${results[resultIndex]}<br><br>
+        <button class="btn" onclick="restartQuiz()">もう一度診断する</button>
+      `;
+    }
+
+    function restartQuiz() {
+      currentIndex = 0;
+      historyStack = [];
+      score = [0, 0, 0, 0, 0, 0];
+      document.getElementById("question").style.display = "block";
+      document.getElementById("buttons").style.display = "block";
+      document.getElementById("result").style.display = "none";
+      updateQuestion(questions[0].text, questions[0].options);
     }
   </script>
-
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+  
 <head>
   <meta charset="UTF-8">
   <title>コーヒーの種類</title>
@@ -260,5 +261,23 @@
       });
     }
   </script>
+  
+  <button onclick="scrollToTop()" id="backToTop" title="トップへ戻る">↑</button>
+
+  <script>
+    window.onscroll = function () {
+      const btn = document.getElementById("backToTop");
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    };
+  
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+  
 </body>
 </html>
